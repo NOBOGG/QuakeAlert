@@ -1,4 +1,4 @@
-package com.owen.quakealert_owen
+package com.owen.quakealert_owen.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

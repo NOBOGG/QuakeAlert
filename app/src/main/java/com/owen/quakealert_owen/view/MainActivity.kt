@@ -1,8 +1,10 @@
-package com.owen.quakealert_owen
+package com.owen.quakealert_owen.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.owen.quakealert_owen.ProfileFragment
+import com.owen.quakealert_owen.R
 import com.owen.quakealert_owen.databinding.ActivityMainBinding
 
 
