@@ -3,12 +3,17 @@ package com.owen.quakealert_owen.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.owen.quakealert_owen.R
 import com.owen.quakealert_owen.databinding.ActivityMainBinding
+import com.owen.quakealert_owen.helper.Const
+import com.owen.quakealert_owen.viewmodel.GempaViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var viewModel: GempaViewModel
     private lateinit var binding : ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,7 +24,8 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         fragmentListener()
-
+        viewModel = ViewModelProvider(this)[GempaViewModel::class.java]
+        viewModel.getGempaTerkini(Dirasakan = String(), Wilayah = String(), Tanggal = String())
 
     }
 
