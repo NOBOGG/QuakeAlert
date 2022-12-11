@@ -1,12 +1,23 @@
 package com.owen.quakealert_owen.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import com.owen.quakealert_owen.R
 import com.owen.quakealert_owen.databinding.FragmentHomeBinding
+import com.owen.quakealert_owen.helper.Const
+import com.owen.quakealert_owen.model.Gempa
+import com.owen.quakealert_owen.repository.GempaRepository
+import com.owen.quakealert_owen.viewmodel.GempaViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import java.math.BigDecimal
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -18,9 +29,11 @@ private const val ARG_PARAM2 = "param2"
  * Use the [HomeFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private lateinit var binding:FragmentHomeBinding
+    private lateinit var viewModel: GempaViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,7 +41,22 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(layoutInflater)
 
-
+//        viewModel = ViewModelProvider(this)[GempaViewModel::class.java]
+//        viewModel.getGempaTerkini(Const.)
+//        viewModel.gempaTerkini.observe(this, Observer { response->
+//            binding.magnitudeTv.apply {
+//               text = response.Magnitude
+//                Log.e("tess",response.Magnitude)
+//            }
+//        })
+        viewModel = ViewModelProvider(this).get(GempaViewModel::class.java)
+//        viewModel.getGempaTerkini()
+        viewModel.gempaTerkini.observe(viewLifecycleOwner,Observer {
+                response->
+            binding.potentialTv.apply {
+                text = response.Magnitude
+            }
+        })
 
         return binding.root
     }

@@ -21,12 +21,12 @@ class GempaViewModel @Inject constructor(private val repository: GempaRepository
     val gempaTerkini: LiveData<Gempa>
         get() = _gempaTerkini
 
-    fun getGempaTerkini(Dirasakan:String, Wilayah: String, Tanggal: String)
+    fun getGempaTerkini()
             = viewModelScope.launch {
-        repository.getGempaTerbaru(Dirasakan, Wilayah, Tanggal).let {
+        repository.getGempaTerbaru().let {
                 response ->
             if (response.isSuccessful){
-                Log.e("Test",_gempaTerkini.postValue(response.body() as Gempa).toString())
+                _gempaTerkini.postValue(response.body() as Gempa)
             }else{
                 Log.e("Get Data","Failed!")
             }

@@ -9,6 +9,7 @@ import com.owen.quakealert_owen.databinding.ActivityMainBinding
 import com.owen.quakealert_owen.helper.Const
 import com.owen.quakealert_owen.viewmodel.GempaViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.HiltAndroidApp
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -24,8 +25,8 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         fragmentListener()
-        viewModel = ViewModelProvider(this)[GempaViewModel::class.java]
-        viewModel.getGempaTerkini(Dirasakan = String(), Wilayah = String(), Tanggal = String())
+//        viewModel = ViewModelProvider(this)[GempaViewModel::class.java]
+//        viewModel.getGempaTerkini(Dirasakan = String(), Wilayah = String(), Tanggal = String())
 
     }
 
