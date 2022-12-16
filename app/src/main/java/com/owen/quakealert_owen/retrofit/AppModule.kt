@@ -1,6 +1,6 @@
 package com.owen.quakealert_owen.retrofit
 
-import com.owen.quakealert_owen.helper.Const
+import com.owen.quakealert_owen.helper.Const.URL_GEMPA
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,7 +23,7 @@ object AppModule {
     @Provides
     fun getRetrofitInstance(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(Const.URL_GEMPA)
+            .baseUrl(URL_GEMPA)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

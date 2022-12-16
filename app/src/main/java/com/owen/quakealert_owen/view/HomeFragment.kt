@@ -1,23 +1,15 @@
 package com.owen.quakealert_owen.view
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
-import com.owen.quakealert_owen.R
 import com.owen.quakealert_owen.databinding.FragmentHomeBinding
-import com.owen.quakealert_owen.helper.Const
-import com.owen.quakealert_owen.model.Gempa
-import com.owen.quakealert_owen.repository.GempaRepository
 import com.owen.quakealert_owen.viewmodel.GempaViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
-import java.math.BigDecimal
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -38,7 +30,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentHomeBinding.inflate(layoutInflater)
 
 //        viewModel = ViewModelProvider(this)[GempaViewModel::class.java]
@@ -50,11 +42,14 @@ class HomeFragment : Fragment() {
 //            }
 //        })
         viewModel = ViewModelProvider(this).get(GempaViewModel::class.java)
-//        viewModel.getGempaTerkini()
+
         viewModel.gempaTerkini.observe(viewLifecycleOwner,Observer {
                 response->
-            binding.potentialTv.apply {
+            binding.magnitudeTv.apply {
                 text = response.Magnitude
+//                Log.e("tes",response.Magnitude)
+//                println("tes")
+                println(response.Magnitude)
             }
         })
 
