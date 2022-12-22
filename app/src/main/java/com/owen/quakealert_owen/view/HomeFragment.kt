@@ -42,6 +42,7 @@ class HomeFragment : Fragment() {
 //            }
 //        })
         viewModel = ViewModelProvider(this).get(GempaViewModel::class.java)
+        viewModel.getGempaTerkini()
 
         viewModel.gempaTerkini.observe(viewLifecycleOwner,Observer {
                 response->
@@ -50,6 +51,9 @@ class HomeFragment : Fragment() {
 //                Log.e("tes",response.Magnitude)
 //                println("tes")
                 println(response.Magnitude)
+            }
+            binding.titleTv.apply {
+                text = response.Wilayah
             }
         })
 
