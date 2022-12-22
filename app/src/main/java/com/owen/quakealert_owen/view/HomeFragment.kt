@@ -33,14 +33,6 @@ class HomeFragment : Fragment() {
     ): View {
         binding = FragmentHomeBinding.inflate(layoutInflater)
 
-//        viewModel = ViewModelProvider(this)[GempaViewModel::class.java]
-//        viewModel.getGempaTerkini(Const.)
-//        viewModel.gempaTerkini.observe(this, Observer { response->
-//            binding.magnitudeTv.apply {
-//               text = response.Magnitude
-//                Log.e("tess",response.Magnitude)
-//            }
-//        })
         viewModel = ViewModelProvider(this).get(GempaViewModel::class.java)
         viewModel.getGempaTerkini()
 
