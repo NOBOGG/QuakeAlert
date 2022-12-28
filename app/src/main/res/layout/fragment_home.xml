@@ -4,212 +4,383 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1B1D1F"
+    android:background="#F3EDEB"
     tools:context=".view.HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:backgroundTint="#1B1D1F">
+        android:layout_height="match_parent">
 
         <ScrollView
+            android:id="@+id/scrollView2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="SpeakableTextPresentCheck">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:backgroundTint="#000000">
 
                 <TextView
                     android:id="@+id/home_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="@font/russo_one"
-                    android:text="Home"
-                    android:textColor="#FFFFFF"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito"
+                    android:text="QuakeAlert"
+                    android:textColor="#EB5F52"
                     android:textSize="40sp"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/neq_tv"
+                    android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
                     android:layout_marginTop="16dp"
-                    android:fontFamily="@font/russo_one"
-                    android:text="Gempabumi terbaru"
-                    android:textColor="#F3F3F3"
-                    android:textSize="25sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/home_tv" />
+                    android:fontFamily="@font/nunito"
+                    android:text="Status Gempa"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/date_cv"
+                    app:layout_constraintTop_toBottomOf="@+id/date_cv" />
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView4"
-                    android:layout_width="match_parent"
+                    android:id="@+id/date_cv"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
                     android:layout_marginTop="16dp"
-                    android:layout_marginEnd="32dp"
+                    app:cardBackgroundColor="#E4B6AC"
                     app:cardCornerRadius="10dp"
-                    app:cardElevation="2dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/neq_tv">
+                    app:layout_constraintStart_toStartOf="@+id/home_tv"
+                    app:layout_constraintTop_toBottomOf="@+id/home_tv">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="#202329">
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/datetime_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="8dp"
+                            android:fontFamily="@font/nunito"
+                            android:text="27 Desember 2022"
+                            android:textColor="#000000"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/date_icon"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/date_icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:src="@drawable/ic_round_access_time"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/statusgempa_cv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="12dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/date_cv"
+                    app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
                         <androidx.cardview.widget.CardView
-                            android:id="@+id/cardView"
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
+                            android:id="@+id/magnitude_cv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
                             android:layout_marginTop="16dp"
-                            app:cardCornerRadius="100dp"
-                            app:layout_constraintEnd_toEndOf="parent"
+                            app:cardBackgroundColor="#F3EDEB"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="10dp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="#D9D9D9">
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:id="@+id/imageView3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="16dp"
+                                    android:layout_marginTop="16dp"
+                                    android:src="@drawable/magnitude_logo"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
 
                                 <TextView
                                     android:id="@+id/magnitude_tv"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:fontFamily="@font/chakra_petch"
-                                    android:text="-"
+                                    android:layout_marginStart="4dp"
+                                    android:layout_marginEnd="16dp"
+                                    android:fontFamily="@font/nunito"
+                                    android:text="5.0"
                                     android:textColor="#000000"
-                                    android:textSize="34sp"
+                                    android:textSize="22sp"
+                                    android:textStyle="bold"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toEndOf="@+id/imageView3"
+                                    app:layout_constraintTop_toTopOf="@+id/imageView3" />
+
+                                <TextView
+                                    android:id="@+id/textView4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginBottom="16dp"
+                                    android:fontFamily="@font/nunito"
+                                    android:text="Magnitudo"
+                                    android:textColor="#EB5F52"
                                     android:textStyle="bold"
                                     app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="@+id/magnitude_tv"
+                                    app:layout_constraintStart_toStartOf="@+id/imageView3"
+                                    app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/kedalaman_cv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            app:cardBackgroundColor="#F3EDEB"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="10dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/magnitude_cv"
+                            app:layout_constraintEnd_toStartOf="@+id/location_cv"
+                            app:layout_constraintStart_toEndOf="@+id/magnitude_cv"
+                            app:layout_constraintTop_toTopOf="@+id/magnitude_cv">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/kedalaman_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginEnd="16dp"
+                                    android:fontFamily="@font/nunito"
+                                    android:text="25 Km"
+                                    android:textColor="#000000"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold"
+                                    app:layout_constraintBottom_toBottomOf="@+id/imageView"
                                     app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toEndOf="@+id/imageView"
+                                    app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+                                <TextView
+                                    android:id="@+id/textView7"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="16dp"
+                                    android:layout_marginBottom="16dp"
+                                    android:fontFamily="@font/nunito"
+                                    android:text="Kedalaman"
+                                    android:textColor="#EB5F52"
+                                    android:textStyle="bold"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="@+id/kedalaman_tv"
+                                    app:layout_constraintStart_toStartOf="@+id/imageView"
+                                    app:layout_constraintTop_toBottomOf="@+id/kedalaman_tv" />
+
+                                <ImageView
+                                    android:id="@+id/imageView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="16dp"
+                                    android:layout_marginTop="16dp"
+                                    android:src="@drawable/water_logo"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/location_cv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginEnd="16dp"
+                            app:cardBackgroundColor="#F3EDEB"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="10dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/kedalaman_cv"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/kedalaman_cv">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:id="@+id/imageView5"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="16dp"
+                                    android:layout_marginTop="16dp"
+                                    android:src="@drawable/location_logo"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                    android:id="@+id/lintang_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginEnd="16dp"
+                                    android:fontFamily="@font/nunito"
+                                    android:text="8.4 LS"
+                                    android:textColor="#000000"
+                                    android:textStyle="bold"
+                                    app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toEndOf="@+id/imageView5"
+                                    app:layout_constraintTop_toTopOf="@+id/imageView5" />
+
+                                <TextView
+                                    android:id="@+id/bujur_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="16dp"
+                                    android:layout_marginBottom="16dp"
+                                    android:fontFamily="@font/nunito"
+                                    android:text="109.97 BT"
+                                    android:textColor="#000000"
+                                    android:textStyle="bold"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="@+id/lintang_tv"
+                                    app:layout_constraintStart_toStartOf="@+id/imageView5"
+                                    app:layout_constraintTop_toBottomOf="@+id/imageView5" />
                             </androidx.constraintlayout.widget.ConstraintLayout>
                         </androidx.cardview.widget.CardView>
 
                         <TextView
-                            android:id="@+id/title_tv"
+                            android:id="@+id/textView8"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:fontFamily="@font/russo_one"
-                            android:text="Title"
-                            android:textAlignment="center"
-                            android:textColor="#FFFFFF"
-                            android:textSize="20sp"
-                            app:layout_constraintEnd_toEndOf="parent"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="@font/nunito"
+                            android:text="Lokasi Gempa"
+                            android:textColor="#EB5F52"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/cardView" />
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/cardView3"
-                            android:layout_width="100dp"
-                            android:layout_height="70dp"
-                            android:layout_marginStart="48dp"
-                            android:layout_marginTop="8dp"
-                            app:cardCornerRadius="10dp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/title_tv">
-
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="#D9D9D9">
-
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-
-                        </androidx.cardview.widget.CardView>
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/cardView2"
-                            android:layout_width="100dp"
-                            android:layout_height="70dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginEnd="48dp"
-                            app:cardCornerRadius="10dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/title_tv">
-
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="#D9D9D9">
-
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-                        </androidx.cardview.widget.CardView>
+                            app:layout_constraintTop_toBottomOf="@+id/magnitude_cv" />
 
                         <TextView
-                            android:id="@+id/potential_tv"
+                            android:id="@+id/wilayah_tv"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="8dp"
+                            android:fontFamily="@font/nunito"
+                            android:text="Wilayah"
+                            android:textColor="#000000"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/textView8"
+                            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+                        <TextView
+                            android:id="@+id/textView5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:fontFamily="@font/chakra_petch"
-                            android:text="Tsunami potential"
-                            android:textColor="#FFFFFF"
-                            android:textSize="15sp"
+                            android:fontFamily="@font/nunito"
+                            android:text="Potensi Tsunami"
+                            android:textColor="#EB5F52"
+                            app:layout_constraintStart_toStartOf="@+id/wilayah_tv"
+                            app:layout_constraintTop_toBottomOf="@+id/wilayah_tv" />
+
+                        <TextView
+                            android:id="@+id/potensi_tv"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="8dp"
+                            android:fontFamily="@font/nunito"
+                            android:text="Potensi"
+                            android:textColor="#000000"
+                            android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/cardView3" />
+                            app:layout_constraintStart_toStartOf="@+id/textView5"
+                            app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
                         <Button
                             android:id="@+id/shakemap_btn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
                             android:layout_marginBottom="8dp"
-                            android:backgroundTint="#21394E"
-                            android:text="shakemap"
-                            app:cornerRadius="15dp"
+                            android:backgroundTint="#F3EDEB"
+                            android:text="Peta Guncangan"
+                            android:textAllCaps="false"
+                            android:textColor="#EB5F52"
+                            app:cornerRadius="50dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/potential_tv" />
+                            app:layout_constraintTop_toBottomOf="@+id/potensi_tv" />
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
+
                 </androidx.cardview.widget.CardView>
 
                 <TextView
-                    android:id="@+id/lcomment_tv"
+                    android:id="@+id/textView14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
                     android:layout_marginTop="16dp"
-                    android:fontFamily="@font/russo_one"
-                    android:text="Latest Comment"
-                    android:textColor="#FFFFFF"
-                    android:textSize="25sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cardView4" />
+                    android:fontFamily="@font/nunito"
+                    android:text="Komen terakhir"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/statusgempa_cv"
+                    app:layout_constraintTop_toBottomOf="@+id/statusgempa_cv" />
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="32dp"
-                    app:cardCornerRadius="10dp"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/lcomment_tv">
+                    app:layout_constraintStart_toStartOf="@+id/textView14"
+                    app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="#202329">
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </androidx.cardview.widget.CardView>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

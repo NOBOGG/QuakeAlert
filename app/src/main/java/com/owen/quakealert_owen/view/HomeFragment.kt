@@ -48,15 +48,30 @@ class HomeFragment : Fragment() {
 //                println("tes")
                 println(response.Magnitude)
             }
-            binding.titleTv.apply {
+            binding.wilayahTv.apply {
                 text = response.Wilayah
+            }
+            binding.lintangTv.apply {
+                text = response.Lintang
+            }
+            binding.bujurTv.apply {
+                text = response.Bujur
+            }
+            binding.kedalamanTv.apply {
+                text = response.Kedalaman
+            }
+            binding.potensiTv.apply {
+                text = response.Potensi
+            }
+            binding.datetimeTv.apply {
+                text = response.Tanggal
             }
         })
 
-        binding.shakemapBtn.setOnClickListener {
-            val myIntent = Intent(activity, LoginActivity::class.java)
-            startActivity(myIntent)
-        }
+//        binding.shakemapBtn.setOnClickListener {
+//            val myIntent = Intent(activity, LoginActivity::class.java)
+//            startActivity(myIntent)
+//        }
 
         return binding.root
     }

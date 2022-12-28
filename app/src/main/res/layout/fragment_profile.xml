@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#1B1D1F">
+        android:background="#F3EDEB">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -63,10 +63,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:fontFamily="@font/russo_one"
+                        android:fontFamily="@font/nunito"
                         android:text="GUEST"
                         android:textColor="#FFFFFF"
                         android:textSize="40sp"
+                        android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="@+id/cardView5"
                         app:layout_constraintStart_toStartOf="@+id/cardView5"
                         app:layout_constraintTop_toBottomOf="@+id/cardView5" />
