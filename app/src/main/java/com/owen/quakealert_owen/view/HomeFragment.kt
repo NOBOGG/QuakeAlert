@@ -43,34 +43,33 @@ class HomeFragment : Fragment() {
         viewModel.gempaTerkini.observe(viewLifecycleOwner,Observer {
                 response->
             binding.magnitudeTv.apply {
-                text = response.Magnitude
+                text = response.gempa.get(0).Magnitude
 //                Log.e("tes",response.Magnitude)
 //                println("tes")
-                println(response.Magnitude)
+                println(response.gempa.get(0).Magnitude)
             }
             binding.wilayahTv.apply {
-                text = response.Wilayah
+                text = response.gempa.get(0).Wilayah
             }
             binding.lintangTv.apply {
-                text = response.Lintang
+                text = response.gempa.get(0).Lintang
             }
             binding.bujurTv.apply {
-                text = response.Bujur
+                text = response.gempa.get(0).Bujur
             }
             binding.kedalamanTv.apply {
-                text = response.Kedalaman
+                text = response.gempa.get(0).Kedalaman
             }
             binding.potensiTv.apply {
-                text = response.Potensi
+                text = response.gempa.get(0).Coordinates
             }
             binding.datetimeTv.apply {
-                text = response.Tanggal
+                text = response.gempa.get(0).Tanggal
             }
         })
 
-//        binding.shakemapBtn.setOnClickListener {
-//            val myIntent = Intent(activity, LoginActivity::class.java)
-//            startActivity(myIntent)
+//        binding.buttonshkCv.setOnClickListener {
+//            replaceFragment(ShakeMapFragment())
 //        }
 
         return binding.root

@@ -59,6 +59,8 @@
                 app:boxCornerRadiusBottomStart="10dp"
                 app:boxCornerRadiusTopEnd="10dp"
                 app:boxCornerRadiusTopStart="10dp"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/register_tv">
@@ -82,9 +84,12 @@
                 app:boxCornerRadiusBottomStart="10dp"
                 app:boxCornerRadiusTopEnd="10dp"
                 app:boxCornerRadiusTopStart="10dp"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
                 app:layout_constraintEnd_toEndOf="@+id/username_layout"
                 app:layout_constraintStart_toStartOf="@+id/username_layout"
                 app:layout_constraintTop_toBottomOf="@+id/username_layout"
+                app:passwordToggleEnabled="true"
                 app:passwordToggleTint="#000000">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -94,7 +99,7 @@
                     android:backgroundTint="#ffffff"
                     android:fontFamily="@font/nunito"
                     android:hint="Password"
-                    android:password="false" />
+                    android:password="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
@@ -122,9 +127,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="52dp"
-                android:layout_marginTop="120dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
-                android:fontFamily="@font/chakra_petch"
+                android:fontFamily="@font/nunito"
                 android:text="Don't have an account?"
                 android:textColor="#8D8D8D"
                 android:textSize="20sp"
@@ -136,17 +141,15 @@
                 android:id="@+id/to_reg_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="120dp"
                 android:layout_marginEnd="52dp"
                 android:layout_marginBottom="24dp"
-                android:fontFamily="@font/chakra_petch"
+                android:fontFamily="@font/nunito"
                 android:text="Register"
                 android:textColor="#EB5F52"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/dhaa_tv"
-                app:layout_constraintTop_toBottomOf="@+id/login_btn" />
+                app:layout_constraintStart_toEndOf="@+id/dhaa_tv" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

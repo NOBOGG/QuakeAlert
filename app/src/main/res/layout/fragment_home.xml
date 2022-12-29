@@ -320,7 +320,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:fontFamily="@font/nunito"
-                            android:text="Potensi Tsunami"
+                            android:text="Koordinat"
                             android:textColor="#EB5F52"
                             app:layout_constraintStart_toStartOf="@+id/wilayah_tv"
                             app:layout_constraintTop_toBottomOf="@+id/wilayah_tv" />
@@ -331,29 +331,17 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:layout_marginEnd="8dp"
+                            android:layout_marginBottom="16dp"
                             android:fontFamily="@font/nunito"
-                            android:text="Potensi"
+                            android:text="Koordinat"
                             android:textColor="#000000"
                             android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="@+id/textView5"
                             app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-                        <Button
-                            android:id="@+id/shakemap_btn"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginBottom="8dp"
-                            android:backgroundTint="#F3EDEB"
-                            android:text="Peta Guncangan"
-                            android:textAllCaps="false"
-                            android:textColor="#EB5F52"
-                            app:cornerRadius="50dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/potensi_tv" />
+
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -374,7 +362,10 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/textView14"
                     app:layout_constraintTop_toBottomOf="@+id/textView14" />

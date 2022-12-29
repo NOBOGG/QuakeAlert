@@ -5,9 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.owen.quakealert_owen.model.Data
-import com.owen.quakealert_owen.model.Gempa
-import com.owen.quakealert_owen.model.Infogempa
+import com.owen.quakealert_owen.model.*
 import com.owen.quakealert_owen.repository.GempaRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -16,36 +14,42 @@ import javax.inject.Inject
 @HiltViewModel
 class GempaViewModel @Inject constructor(private val repository: GempaRepository):ViewModel() {
 
-    val _gempaTerkini : MutableLiveData<Gempa> by lazy{
-        MutableLiveData<Gempa>()
+    val _gempaTerkini : MutableLiveData<Infogempa> by lazy{
+        MutableLiveData<Infogempa>()
     }
-//    val _gempaTerkini = MutableLiveData<Gempa>()
 
-    val gempaTerkini: LiveData<Gempa>
+    val gempaTerkini: LiveData<Infogempa>
         get() = _gempaTerkini
 
-//    init {
-//        getGempaTerkini()
-//    }
-
     fun getGempaTerkini() = viewModelScope.launch {
-        repository.getGempa().let { response ->
+        repository.getGempaDirasakan().let { response ->
             Log.e("EROORE", response.body().toString())
             if (response.isSuccessful) {
                 var x : Data = response.body() as Data
-                _gempaTerkini.postValue(x.Infogempa.gempa)
-
-//                response.body().let {
-//                    Log.e("EROORE", it.toString())
-//                    //_gempaTerkini.postValue(it.)
-//                }
-
-//                Log.e("EROORE", response.message().toString())
-//                _gempaTerkini.postValue(response.body()?.Infogempa!!.gempa as Gempa)
-//                Log.e("test", _gempaTerkini.postValue(response.body()!!.Magnitude).toString()
+                _gempaTerkini.postValue(x.Infogempa)
             }else{
                 Log.e("Get Gempa Data","Failed!")
             }
         }
     }
+
+    val _gempaDirasakan : MutableLiveData<Infogempa> by lazy{
+        MutableLiveData<Infogempa>()
+    }
+
+    val gempaDirasakan: LiveData<Infogempa>
+        get() = _gempaDirasakan
+
+    fun getGempaHistory() = viewModelScope.launch {
+        repository.getGempaDirasakan().let { response ->
+            Log.e("EROOREhis", response.body().toString())
+            if (response.isSuccessful) {
+                var x : Data = response.body() as Data
+                _gempaDirasakan.postValue(x.Infogempa)
+            }else{
+                Log.e("Get Gempa Data","Failed!")
+            }
+        }
+    }
+
 }

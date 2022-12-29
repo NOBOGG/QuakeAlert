@@ -1,5 +1,6 @@
 package com.owen.quakealert_owen.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,8 +18,13 @@ class ProfileFragment : Fragment() {
     ): View? {
         binding = FragmentProfileBinding.inflate(layoutInflater)
 
+        binding.loginfirstBtn.setOnClickListener {
+            val myIntent = Intent(this.context,LoginActivity::class.java)
+            startActivity(myIntent)
+        }
         return binding.root
     }
+
 
 
 }

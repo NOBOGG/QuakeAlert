@@ -5,4 +5,6 @@ import javax.inject.Inject
 
 class GempaRepository @Inject constructor(private val api: EndPointApi) {
     suspend fun getGempa() = api.getGempaData()
+
+    suspend fun getGempaDirasakan() = api.getGempaDirasakan()
 }
