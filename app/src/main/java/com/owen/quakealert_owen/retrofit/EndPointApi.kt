@@ -9,9 +9,14 @@ interface EndPointApi {
 //    @GET("autogempa.json")
 //    suspend fun getGempaTerbaru(
 //    ):Response <Gempa>
-    @GET("DataMKG/TEWS/autogempa.json")
+    @GET("gempaterkini")
     suspend fun getGempaData():Response<Data>
 
-    @GET("DataMKG/TEWS/gempadirasakan.json")
+//    @GET("DataMKG/TEWS/gempadirasakan.json")
+//    suspend fun getGempaDirasakan():Response<Data>
+
+
+
+    @GET("gempa")
     suspend fun getGempaDirasakan():Response<Data>
 }
