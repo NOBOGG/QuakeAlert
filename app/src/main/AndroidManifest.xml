@@ -17,6 +17,13 @@
         android:theme="@style/Theme.QuakeAlert_Owen"
         tools:targetApi="31">
         <activity
+            android:name=".SplashActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".view.RegisterActivity"
             android:exported="false">
             <meta-data
