@@ -11,6 +11,7 @@ interface EndPointApi {
 //    ):Response <Gempa>
     @GET("DataMKG/TEWS/autogempa.json")
     suspend fun getGempaData():Response<Data>
+
     @GET("DataMKG/TEWS/gempadirasakan.json")
     suspend fun getGempaDirasakan():Response<Data>
 }
