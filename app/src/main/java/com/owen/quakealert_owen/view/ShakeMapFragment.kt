@@ -40,7 +40,7 @@ class ShakeMapFragment : Fragment() {
         viewModel.getGempaTerkini()
 
         viewModel.gempaTerkini.observe(viewLifecycleOwner, Observer { response ->
-        binding.backgroundLoad.visibility = View.INVISIBLE
+            binding.backgroundLoad.visibility = View.INVISIBLE
                 Glide.with(this)
                     .load(Const.IMG_URL + response.gempa.get(0).Shakemap)
                     .into(binding.shakemapImg)

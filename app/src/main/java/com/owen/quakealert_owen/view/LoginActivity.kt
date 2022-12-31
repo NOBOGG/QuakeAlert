@@ -32,5 +32,10 @@ class LoginActivity : AppCompatActivity() {
             val myIntent = Intent(this,RegisterActivity::class.java)
             startActivity(myIntent)
         }
+        binding.backlogBtn.setOnClickListener{
+            val myIntent = Intent(this,MainActivity::class.java)
+            startActivity(myIntent)
+            finish()
+        }
     }
 }

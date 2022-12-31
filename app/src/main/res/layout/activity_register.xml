@@ -198,6 +198,16 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/quake_alert" />
 
+            <ImageView
+                android:id="@+id/backreg_btn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/back_logo" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
