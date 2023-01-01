@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.owen.quakealert_owen.databinding.ActivityRegisterBinding
 import com.owen.quakealert_owen.model.SubmitRegister
@@ -52,17 +53,20 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun listener() {
         binding.regBtn.setOnClickListener {
-            val name = binding.commentEdittext.text.toString()
-            val username = binding.usernameEdittext.text.toString()
-            val password = binding.passwordEdittext.text.toString()
-            val email = binding.emailEdittext.text.toString()
+            val name = binding.commentEdittext.text.toString().trim()
+            val username = binding.usernameEdittext.text.toString().trim()
+            val password = binding.passwordEdittext.text.toString().trim()
+            val email = binding.emailEdittext.text.toString().trim()
             viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
             viewModel.createUser(name, username, password, email, "member", "").enqueue(object : retrofit2.Callback<SubmitRegister> {
                 override fun onResponse(call: retrofit2.Call<SubmitRegister>, response: retrofit2.Response<SubmitRegister>) {
                     if (response.isSuccessful) {
                         val myIntent = Intent(this@RegisterActivity, LoginActivity::class.java)
                         startActivity(myIntent)
+                        Toast.makeText(this@RegisterActivity, "Registrasi berhasil", Toast.LENGTH_SHORT).show()
                         finish()
+                    }else{
+                        Toast.makeText(this@RegisterActivity, "Gagal membuat akun", Toast.LENGTH_SHORT).show()
                     }
                 }
 

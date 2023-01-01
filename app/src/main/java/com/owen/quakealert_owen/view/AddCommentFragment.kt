@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import com.owen.quakealert_owen.R
@@ -44,7 +45,7 @@ class AddCommentFragment : Fragment() {
 
         //create comment
         binding.addcommentBtn.setOnClickListener {
-            val comment = binding.commentEdittext.text.toString()
+            val comment = binding.commentEdittext.text.toString().trim()
             val id = binding.commentEdittext.text.toString()
             viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
             viewModel.createComment(comment, "1").enqueue(object : retrofit2.Callback<SubmitComment> {
@@ -55,6 +56,9 @@ class AddCommentFragment : Fragment() {
                     if (response.isSuccessful) {
                         val myIntent = Intent(context, MainActivity::class.java)
                         startActivity(myIntent)
+                        Toast.makeText(context, "Comment telah terbuat", Toast.LENGTH_SHORT).show()
+                    }else{
+                        Toast.makeText(context, "Comment tidak berhasil terbuat", Toast.LENGTH_SHORT).show()
                     }
                 }
 

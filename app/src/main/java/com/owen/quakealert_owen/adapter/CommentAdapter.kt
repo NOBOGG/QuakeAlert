@@ -6,9 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.owen.quakealert_owen.R
 import com.owen.quakealert_owen.databinding.CommentsCardviewBinding
+import com.owen.quakealert_owen.model.Comment
+import com.owen.quakealert_owen.model.DataX
 
 
-class CommentAdapter(private val dataSet: Array<String>) :
+class CommentAdapter(private val dataSet: ArrayList<DataX>) :
         RecyclerView.Adapter<CommentAdapter.ViewHolder>() {
 
     /**
@@ -33,8 +35,8 @@ class CommentAdapter(private val dataSet: Array<String>) :
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        viewHolder.binding.namecardTv.text = dataSet[position]
-        viewHolder.binding.commentcardTv.text = dataSet[position]
+        viewHolder.binding.namecardTv.text = dataSet[position].comment
+        viewHolder.binding.commentcardTv.text = dataSet[position].user_id.toString()
     }
 
     // Return the size of your dataset (invoked by the layout manager)

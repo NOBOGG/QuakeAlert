@@ -1,8 +1,6 @@
 package com.owen.quakealert_owen.retrofit
 
-import com.owen.quakealert_owen.model.Data
-import com.owen.quakealert_owen.model.SubmitComment
-import com.owen.quakealert_owen.model.SubmitRegister
+import com.owen.quakealert_owen.model.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -27,6 +25,10 @@ interface EndPointApi {
     @GET("gempa")
      suspend fun getGempaDirasakan():Response<Data>
 
+     //get comment
+    @GET("comment")
+    suspend fun getComment():Response<Comment>
+
     //Insert Data
     @FormUrlEncoded
     @POST("comment")
@@ -46,4 +48,6 @@ interface EndPointApi {
         @Field("status") status:String,
         @Field("image") image:String
     ):Call<SubmitRegister>
+
+
 }
