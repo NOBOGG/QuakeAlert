@@ -30,9 +30,9 @@ interface EndPointApi {
     //Insert Data
     @FormUrlEncoded
     @POST("comment")
-     suspend fun insertComment(
+     fun insertComment(
         @Field("comment") comment:String,
-        @Field("user_id") user_id:Int
+        @Field("user_id") user_id:String
     ):Call<SubmitComment>
 
     //Insert User

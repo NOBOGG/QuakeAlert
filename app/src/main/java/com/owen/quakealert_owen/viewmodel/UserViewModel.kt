@@ -10,12 +10,19 @@ import javax.inject.Inject
 @HiltViewModel
 class UserViewModel @Inject constructor(private val repository: UserRepository):ViewModel() {
 
-    fun createComment(comment: String, user_id: Int) = viewModelScope.launch {
+    //create comment
+    fun createComment(comment: String, user_id: String) =
         repository.insertComment(comment, user_id)
-    }
 
+
+
+    //create user
     fun createUser(name: String, username: String, password: String, email: String, status: String, image: String) =
         repository.insertUser(name, username, password, email, status, image)
+
+
+
+
 
 
 }
