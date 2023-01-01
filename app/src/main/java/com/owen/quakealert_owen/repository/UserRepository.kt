@@ -11,6 +11,10 @@ class UserRepository @Inject constructor(private val api: EndPointApi) {
     fun insertUser(name: String, username: String, password: String, email: String, status: String, image: String)
     = api.insertUser(name, username, password, email, status, image)
 
+    //login user
+    fun loginUser(email: String,password: String) =
+        api.loginUser(email,password)
+
     //get comment
     suspend fun getComment() = api.getComment()
 }

@@ -24,6 +24,10 @@ class UserViewModel @Inject constructor(private val repository: UserRepository):
     fun createUser(name: String, username: String, password: String, email: String, status: String, image: String) =
         repository.insertUser(name, username, password, email, status, image)
 
+    //login user
+    fun loginUser(email: String,password: String) =
+        repository.loginUser(email,password)
+
 
     //get comment
     val _comment : MutableLiveData<Comment> by lazy {

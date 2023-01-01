@@ -1,5 +1,9 @@
 package com.owen.quakealert_owen.retrofit
 
+import com.owen.quakealert_owen.model.Data
+import com.owen.quakealert_owen.model.SubmitComment
+import com.owen.quakealert_owen.model.SubmitLogin
+import com.owen.quakealert_owen.model.SubmitRegister
 import com.owen.quakealert_owen.model.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -48,6 +52,14 @@ interface EndPointApi {
         @Field("status") status:String,
         @Field("image") image:String
     ):Call<SubmitRegister>
+
+    //Login User
+    @FormUrlEncoded
+    @POST("login")
+    fun loginUser(
+        @Field("email") email:String,
+        @Field("password") password:String
+    ):Call<SubmitLogin>
 
 
 }
