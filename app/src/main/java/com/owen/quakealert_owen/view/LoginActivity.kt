@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.owen.quakealert_owen.databinding.ActivityLoginBinding
 import com.owen.quakealert_owen.model.SubmitLogin
@@ -40,7 +41,10 @@ class LoginActivity : AppCompatActivity() {
                     if (response.isSuccessful){
                         val myIntent = Intent(this@LoginActivity, MainActivity::class.java)
                         startActivity(myIntent)
+                        Toast.makeText(this@LoginActivity, "Login Berhasil", Toast.LENGTH_SHORT).show()
                         finish()
+                    }else{
+                        Toast.makeText(this@LoginActivity, "Login Gagal", Toast.LENGTH_SHORT).show()
                     }
                 }
 
@@ -49,9 +53,6 @@ class LoginActivity : AppCompatActivity() {
                 }
 
             })
-            val myIntent = Intent(this,MainActivity::class.java)
-            startActivity(myIntent)
-            finish()
         }
         binding.toRegTv.setOnClickListener {
             val myIntent = Intent(this,RegisterActivity::class.java)
