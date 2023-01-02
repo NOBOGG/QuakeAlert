@@ -8,6 +8,7 @@ import com.owen.quakealert_owen.model.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.http.DELETE
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -70,6 +71,13 @@ interface EndPointApi {
         @Field("email") email:String,
         @Field("password") password:String
     ):Call<SubmitLogin>
+
+    //delete Comment
+    @FormUrlEncoded
+    @DELETE("comment/{id}")
+    fun deleteComment(
+        @Path("id") id:Int
+    ):Call<SubmitComment>
 
 
 }

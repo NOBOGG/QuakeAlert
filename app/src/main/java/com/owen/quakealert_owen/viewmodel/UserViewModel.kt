@@ -67,10 +67,9 @@ class UserViewModel @Inject constructor(private val repository: UserRepository):
         }
     }
 
-
-
-
-
+    //delete comment
+    fun deleteComment(id: Int) =
+        repository.deleteComment(id)
 }
 
 
