@@ -18,14 +18,14 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
 
     companion object{
-        var loginID = "0"
+        var loginID = 0
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        loginID = intent.getStringExtra("login_id").toString()
+        loginID = intent.getIntExtra("login_id",0)
 
         supportActionBar?.hide()
         Toast.makeText(this, "Login ID : $loginID", Toast.LENGTH_SHORT).show()

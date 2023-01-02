@@ -38,7 +38,7 @@ interface EndPointApi {
     //Get User
     @GET("login/{id}")
     suspend fun getUserbyId(
-        @Path("id") id : String
+        @Path("id") id : Int
     ):Response<Users>
 
     //Insert Data

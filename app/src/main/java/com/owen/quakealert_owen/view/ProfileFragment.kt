@@ -30,25 +30,51 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentProfileBinding.inflate(layoutInflater)
-        if(loginID !="0"){
+        if(loginID !=0){
             viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
             viewModel.getUserbyId(loginID)
             Toast.makeText(context, "Login ID : $loginID", Toast.LENGTH_SHORT).show()
 
-
+            binding.emailTv.visibility = View.VISIBLE
             viewModel.user.observe(viewLifecycleOwner, Observer { response ->
                 Toast.makeText(context, "nama"+response.name, Toast.LENGTH_SHORT).show()
                 binding.nameTv.apply {
                     text = response.name
                 }
+                binding.emailTv.apply {
+                    text = response.email
+                }
+//                binding.textView3.apply {
+//                    text = response.status
+//                }
+                if(response.status != "admin"){
+                    binding.textView3.apply {
+                        visibility = View.INVISIBLE
+                    }
+                }else{
+                    binding.textView3.apply {
+                        visibility = View.VISIBLE
+                    }
+                }
             })
+            binding.loginfirstBtn.text = "Logout"
+            binding.loginfirstBtn.setOnClickListener {
+                loginID = 0
+                val intent = Intent(context, MainActivity::class.java)
+                Toast.makeText(context, "Logout Berhasil", Toast.LENGTH_SHORT).show()
+                startActivity(intent)
+            }
+        }
+        else{
+            binding.textView3.visibility = View.INVISIBLE
+            binding.loginfirstBtn.visibility = View.VISIBLE
+            binding.emailTv.visibility = View.INVISIBLE
+            binding.loginfirstBtn.setOnClickListener {
+                val intent = Intent(context, LoginActivity::class.java)
+                startActivity(intent)
+            }
         }
 
-
-        binding.loginfirstBtn.setOnClickListener {
-            val myIntent = Intent(this.context,LoginActivity::class.java)
-            startActivity(myIntent)
-        }
         return binding.root
     }
 

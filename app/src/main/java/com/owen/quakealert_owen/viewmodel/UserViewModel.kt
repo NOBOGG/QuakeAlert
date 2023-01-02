@@ -37,7 +37,7 @@ class UserViewModel @Inject constructor(private val repository: UserRepository):
     val user : LiveData<Users>
         get() = _user
 
-    fun getUserbyId(id:String) = viewModelScope.launch {
+    fun getUserbyId(id:Int) = viewModelScope.launch {
         repository.getUserbyId(id).let {
             response ->
             if (response.isSuccessful){
