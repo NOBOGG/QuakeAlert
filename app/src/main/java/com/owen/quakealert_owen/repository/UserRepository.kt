@@ -17,4 +17,7 @@ class UserRepository @Inject constructor(private val api: EndPointApi) {
 
     //get comment
     suspend fun getComment() = api.getComment()
+
+    //get user
+    suspend fun getUserbyId(id:String) = api.getUserbyId(id)
 }

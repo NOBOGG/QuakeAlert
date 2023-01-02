@@ -12,6 +12,8 @@ import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 
 interface EndPointApi {
@@ -33,6 +35,12 @@ interface EndPointApi {
     @GET("comment")
     suspend fun getComment():Response<Comment>
 
+    //Get User
+    @GET("login/{id}")
+    suspend fun getUserbyId(
+        @Path("id") id : String
+    ):Response<Users>
+
     //Insert Data
     @FormUrlEncoded
     @POST("comment")
@@ -40,6 +48,8 @@ interface EndPointApi {
         @Field("comment") comment:String,
         @Field("user_id") user_id:String
     ):Call<SubmitComment>
+
+
 
     //Insert User
     @FormUrlEncoded

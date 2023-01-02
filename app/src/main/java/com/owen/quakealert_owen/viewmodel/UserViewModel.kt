@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.owen.quakealert_owen.model.Comment
+import com.owen.quakealert_owen.model.Users
 import com.owen.quakealert_owen.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -27,6 +28,25 @@ class UserViewModel @Inject constructor(private val repository: UserRepository):
     //login user
     fun loginUser(email: String,password: String) =
         repository.loginUser(email,password)
+
+    //get user
+    val _user : MutableLiveData<Users> by lazy {
+        MutableLiveData<Users>()
+    }
+
+    val user : LiveData<Users>
+        get() = _user
+
+    fun getUserbyId(id:String) = viewModelScope.launch {
+        repository.getUserbyId(id).let {
+            response ->
+            if (response.isSuccessful){
+                _user.postValue(response.body())
+            }else{
+                Log.e("Get Data","Failed!")
+            }
+        }
+    }
 
 
     //get comment
