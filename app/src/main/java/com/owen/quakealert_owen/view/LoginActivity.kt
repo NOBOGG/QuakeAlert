@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.util.Patterns
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.owen.quakealert_owen.databinding.ActivityLoginBinding
@@ -33,6 +34,26 @@ class LoginActivity : AppCompatActivity() {
         binding.loginBtn.setOnClickListener {
             val email = binding.usernameEdittext.text.toString().trim()
             val password = binding.passwordEdittext.text.toString().trim()
+            if (email.isEmpty()){
+                binding.usernameLayout.error = "Email tidak boleh kosong"
+                binding.usernameLayout.requestFocus()
+                return@setOnClickListener
+            }else{
+                if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                    binding.usernameLayout.error = "Email tidak valid"
+                    binding.usernameLayout.requestFocus()
+                    return@setOnClickListener
+                }else {
+                    binding.usernameLayout.error = ""
+                }
+            }
+            if (password.isEmpty()){
+                binding.passwordLayout.error = "Password tidak boleh kosong"
+                binding.passwordLayout.requestFocus()
+                return@setOnClickListener
+            }else{
+                binding.passwordLayout.error = ""
+            }
             viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
             viewModel.loginUser(email,password).enqueue(object : retrofit2.Callback<SubmitLogin>{
                 override fun onResponse(
