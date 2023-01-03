@@ -360,6 +360,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/statusgempa_cv" />
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/homecomment_rv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"

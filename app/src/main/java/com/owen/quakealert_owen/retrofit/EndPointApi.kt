@@ -73,7 +73,6 @@ interface EndPointApi {
     ):Call<SubmitLogin>
 
     //delete Comment
-    @FormUrlEncoded
     @DELETE("comment/{id}")
     fun deleteComment(
         @Path("id") id:Int

@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.owen.quakealert_owen.databinding.ActivityLoginBinding
 import com.owen.quakealert_owen.model.SubmitLogin
+import com.owen.quakealert_owen.view.MainActivity.Companion.login
 import com.owen.quakealert_owen.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -42,6 +43,7 @@ class LoginActivity : AppCompatActivity() {
                         val myIntent = Intent(this@LoginActivity, MainActivity::class.java)
 //                        Toast.makeText(this@LoginActivity, response.body()?.id, Toast.LENGTH_SHORT).show()
                         myIntent.putExtra("login_id",response.body()?.id?.toInt())
+                        login = true
                         startActivity(myIntent)
                         Toast.makeText(this@LoginActivity, "Login Berhasil", Toast.LENGTH_SHORT).show()
                         finish()

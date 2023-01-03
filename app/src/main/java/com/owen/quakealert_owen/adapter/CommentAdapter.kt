@@ -1,28 +1,33 @@
 package com.owen.quakealert_owen.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.RecyclerView
 import com.owen.quakealert_owen.R
 import com.owen.quakealert_owen.databinding.CommentsCardviewBinding
 import com.owen.quakealert_owen.model.Comment
 import com.owen.quakealert_owen.model.DataX
 import com.owen.quakealert_owen.model.SubmitComment
+import com.owen.quakealert_owen.view.MainActivity
+import com.owen.quakealert_owen.view.MainActivity.Companion.loginID
 import com.owen.quakealert_owen.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.HiltAndroidApp
+import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
 
 class CommentAdapter(private val dataSet: ArrayList<DataX>) :
-
-    RecyclerView.Adapter<CommentAdapter.ViewHolder>(){
+    RecyclerView.Adapter<CommentAdapter.ViewHolder>() {
 
     private lateinit var viewModel: UserViewModel
 
@@ -50,33 +55,55 @@ class CommentAdapter(private val dataSet: ArrayList<DataX>) :
         // contents of the view with that element
         viewHolder.binding.namecardTv.text = dataSet[position].comment
         viewHolder.binding.commentcardTv.text = dataSet[position].user_id.toString()
-
-        //delete comment
-        viewHolder.binding.trashBtn.setOnClickListener {
-            //delete
-
-            viewModel = ViewModelProvider(ViewModelStore(), ViewModelProvider.NewInstanceFactory()).get(UserViewModel::class.java)
-
-            viewModel.deleteComment(dataSet[position].id).enqueue(object : Callback<SubmitComment> {
-                override fun onResponse(call: Call<SubmitComment>, response: Response<SubmitComment>) {
-                    if (response.isSuccessful){
-                        Toast.makeText(viewHolder.itemView.context, "Comment Deleted", Toast.LENGTH_SHORT).show()
-                    }else{
-                        Toast.makeText(viewHolder.itemView.context, "Failed to delete comment", Toast.LENGTH_SHORT).show()
-                    }
+//        viewModel = ViewModelProvider(ViewModelStore(), ViewModelProvider.NewInstanceFactory()).get(
+//            UserViewModel::class.java
+//        )
+//        viewModel.getUserbyId(loginID)
+//
+//        viewModel.user.observeForever {
+//            if (it.status != "admin") {
+//                viewHolder.binding.trashBtn.visibility = View.INVISIBLE
+//            } else {
+//                viewHolder.binding.trashBtn.visibility = View.VISIBLE
+                viewHolder.binding.trashBtn.setOnClickListener {
+                    val myIntent =
+                        Intent(viewHolder.itemView.context, MainActivity::class.java).apply {
+                            putExtra("commentdel_id", dataSet[position].id)
+                        }
+                    viewHolder.itemView.context.startActivity(myIntent)
                 }
+//            }
+//        }
 
-                override fun onFailure(call: Call<SubmitComment>, t: Throwable) {
-                    Toast.makeText(viewHolder.itemView.context, "Failed to delete comment", Toast.LENGTH_SHORT).show()
-                }
-
-            })
-            dataSet.removeAt(position)
-            notifyItemRemoved(position)
-
-        }
 
     }
+
+    //delete comment
+//        viewHolder.binding.trashBtn.setOnClickListener {
+//            delete
+//            cannot create an instance of class UserViewModel
+//            viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+//
+//viewModel = ViewModelProvider(ViewModelStore(), ViewModelProvider.AndroidViewModelFactory.getInstance(viewHolder.itemView.context)).get(UserViewModel::class.java)
+//            viewModel.deleteComment(dataSet[position].id).enqueue(object : Callback<SubmitComment> {
+//                override fun onResponse(call: Call<SubmitComment>, response: Response<SubmitComment>) {
+//                    if (response.isSuccessful){
+//                        Toast.makeText(viewHolder.itemView.context, "Comment Deleted", Toast.LENGTH_SHORT).show()
+//                    }else{
+//                        Toast.makeText(viewHolder.itemView.context, "Failed to delete comment", Toast.LENGTH_SHORT).show()
+//                    }
+//                }
+//
+//                override fun onFailure(call: Call<SubmitComment>, t: Throwable) {
+//                    Toast.makeText(viewHolder.itemView.context, "Failed to delete comment", Toast.LENGTH_SHORT).show()
+//                }
+//
+//            })
+//            dataSet.removeAt(position)
+//            notifyItemRemoved(position)
+//
+//        }
+//}
 
     // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount() = dataSet.size

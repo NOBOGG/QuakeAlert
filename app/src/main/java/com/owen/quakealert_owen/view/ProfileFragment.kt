@@ -15,6 +15,7 @@ import com.owen.quakealert_owen.R
 import com.owen.quakealert_owen.adapter.CommentAdapter
 import com.owen.quakealert_owen.databinding.FragmentProfileBinding
 import com.owen.quakealert_owen.model.DataX
+import com.owen.quakealert_owen.view.MainActivity.Companion.login
 import com.owen.quakealert_owen.view.MainActivity.Companion.loginID
 import com.owen.quakealert_owen.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,6 +37,7 @@ class ProfileFragment : Fragment() {
             Toast.makeText(context, "Login ID : $loginID", Toast.LENGTH_SHORT).show()
 
             binding.emailTv.visibility = View.VISIBLE
+            binding.updateprofileBtn.visibility = View.VISIBLE
             viewModel.user.observe(viewLifecycleOwner, Observer { response ->
                 Toast.makeText(context, "nama"+response.name, Toast.LENGTH_SHORT).show()
                 binding.nameTv.apply {
@@ -49,7 +51,7 @@ class ProfileFragment : Fragment() {
 //                }
                 if(response.status != "admin"){
                     binding.textView3.apply {
-                        visibility = View.INVISIBLE
+                        visibility = View.GONE
                     }
                 }else{
                     binding.textView3.apply {
@@ -59,14 +61,16 @@ class ProfileFragment : Fragment() {
             })
             binding.loginfirstBtn.text = "Logout"
             binding.loginfirstBtn.setOnClickListener {
-                loginID = 0
-                val intent = Intent(context, MainActivity::class.java)
+
+                val intent = Intent(context, MainActivity::class.java).putExtra("login_id", 0)
+                login = false
                 Toast.makeText(context, "Logout Berhasil", Toast.LENGTH_SHORT).show()
                 startActivity(intent)
             }
         }
         else{
-            binding.textView3.visibility = View.INVISIBLE
+            binding.updateprofileBtn.visibility = View.GONE
+            binding.textView3.visibility = View.GONE
             binding.loginfirstBtn.visibility = View.VISIBLE
             binding.emailTv.visibility = View.INVISIBLE
             binding.loginfirstBtn.setOnClickListener {

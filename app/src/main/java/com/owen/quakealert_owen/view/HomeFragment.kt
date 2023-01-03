@@ -10,9 +10,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.owen.quakealert_owen.R
+import com.owen.quakealert_owen.adapter.CommentAdapter
 import com.owen.quakealert_owen.databinding.FragmentHomeBinding
+import com.owen.quakealert_owen.model.DataX
 import com.owen.quakealert_owen.viewmodel.GempaViewModel
+import com.owen.quakealert_owen.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 // TODO: Rename parameter arguments, choose names that match
@@ -30,6 +34,9 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding:FragmentHomeBinding
     private lateinit var viewModel: GempaViewModel
+    private lateinit var viewModelCom: UserViewModel
+    private lateinit var Comadapter: CommentAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -71,6 +78,16 @@ class HomeFragment : Fragment() {
 //        binding.buttonshkCv.setOnClickListener {
 //            replaceFragment(ShakeMapFragment())
 //        }
+
+        viewModelCom = ViewModelProvider(this).get(UserViewModel::class.java)
+        viewModelCom.getComment()
+
+        viewModelCom.comment.observe(viewLifecycleOwner, Observer { response ->
+            binding.homecommentRv.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            Comadapter = CommentAdapter(response.data as ArrayList<DataX>)
+            binding.homecommentRv.adapter = Comadapter
+
+        })
 
         return binding.root
     }
