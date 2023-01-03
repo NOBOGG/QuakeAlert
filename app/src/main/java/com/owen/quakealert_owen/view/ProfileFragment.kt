@@ -1,6 +1,7 @@
 package com.owen.quakealert_owen.view
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -38,17 +39,22 @@ class ProfileFragment : Fragment() {
 
             binding.emailTv.visibility = View.VISIBLE
             binding.updateprofileBtn.visibility = View.VISIBLE
+
+            //update
+            binding.updateprofileBtn.setOnClickListener {
+                val intent = Intent(context, UpdateUserActivity::class.java)
+                intent.putExtra("profile_id", loginID)
+                startActivity(intent)
+            }
+
             viewModel.user.observe(viewLifecycleOwner, Observer { response ->
-                Toast.makeText(context, "nama"+response.name, Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context, "nama"+response.name, Toast.LENGTH_SHORT).show()
                 binding.nameTv.apply {
                     text = response.name
                 }
                 binding.emailTv.apply {
                     text = response.email
                 }
-//                binding.textView3.apply {
-//                    text = response.status
-//                }
                 if(response.status != "admin"){
                     binding.textView3.apply {
                         visibility = View.GONE
@@ -58,6 +64,7 @@ class ProfileFragment : Fragment() {
                         visibility = View.VISIBLE
                     }
                 }
+                binding.imageView2.setImageURI(Uri.parse(response.image))
             })
             binding.loginfirstBtn.text = "Logout"
             binding.loginfirstBtn.setOnClickListener {

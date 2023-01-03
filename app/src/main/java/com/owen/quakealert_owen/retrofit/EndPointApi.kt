@@ -12,6 +12,7 @@ import retrofit2.http.DELETE
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
+import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -56,6 +57,19 @@ interface EndPointApi {
     @FormUrlEncoded
     @POST("register")
     fun insertUser(
+        @Field("name") name:String,
+        @Field("username") username:String,
+        @Field("password") password:String,
+        @Field("email") email:String,
+        @Field("status") status:String,
+        @Field("image") image:String
+    ):Call<SubmitRegister>
+
+    //Update User
+    @FormUrlEncoded
+    @PATCH("update")
+    fun updateUser(
+        @Field("id") id:Int,
         @Field("name") name:String,
         @Field("username") username:String,
         @Field("password") password:String,

@@ -1,5 +1,6 @@
 package com.owen.quakealert_owen.adapter
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -65,12 +66,24 @@ class CommentAdapter(private val dataSet: ArrayList<DataX>) :
 //                viewHolder.binding.trashBtn.visibility = View.INVISIBLE
 //            } else {
 //                viewHolder.binding.trashBtn.visibility = View.VISIBLE
+
                 viewHolder.binding.trashBtn.setOnClickListener {
-                    val myIntent =
-                        Intent(viewHolder.itemView.context, MainActivity::class.java).apply {
-                            putExtra("commentdel_id", dataSet[position].id)
-                        }
-                    viewHolder.itemView.context.startActivity(myIntent)
+                    val alertDialog = AlertDialog.Builder(it.context)
+                    alertDialog.apply {
+                        setTitle("Konfirmasi")
+                        setMessage("Apakah anda yakin untuk menghapus komen ini?")
+                        setNegativeButton("No", { dialogInterface, i -> dialogInterface.dismiss() })
+                        setPositiveButton("Yes", { dialogInterface, i -> dialogInterface.dismiss()
+                            val myIntent =
+                                Intent(viewHolder.itemView.context, MainActivity::class.java).apply {
+                                    putExtra("commentdel_id", dataSet[position].id)
+                                }
+                            viewHolder.itemView.context.startActivity(myIntent)
+                            Toast.makeText(it.context, "Komen Berhasil Di Hapus", Toast.LENGTH_SHORT).show()
+                        })
+                        alertDialog.show()
+                    }
+
                 }
 //            }
 //        }

@@ -25,6 +25,10 @@ class UserViewModel @Inject constructor(private val repository: UserRepository):
     fun createUser(name: String, username: String, password: String, email: String, status: String, image: String) =
         repository.insertUser(name, username, password, email, status, image)
 
+    //update user
+    fun updateUser(id:Int, name: String, username: String, password: String, email: String, status: String, image: String) =
+        repository.updateUser(id, name, username, password, email, status, image)
+
     //login user
     fun loginUser(email: String,password: String) =
         repository.loginUser(email,password)

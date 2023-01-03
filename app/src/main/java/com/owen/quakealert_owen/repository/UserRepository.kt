@@ -21,6 +21,10 @@ class UserRepository @Inject constructor(private val api: EndPointApi) {
     //get user
     suspend fun getUserbyId(id:Int) = api.getUserbyId(id)
 
+    //update user
+    fun updateUser(id:Int, name: String, username: String, password: String, email: String, status: String, image: String)
+    = api.updateUser(id, name, username, password, email, status, image)
+
     //delete comment
     fun deleteComment(id:Int)
         = api.deleteComment(id)

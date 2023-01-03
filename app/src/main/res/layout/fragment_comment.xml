@@ -31,7 +31,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/nunito"
-                    android:text="Comments"
+                    android:text="Live Comments"
                     android:textColor="#EB5F52"
                     android:textSize="40sp"
                     android:textStyle="bold"
