@@ -15,6 +15,7 @@ import com.owen.quakealert_owen.R
 import com.owen.quakealert_owen.adapter.CommentAdapter
 import com.owen.quakealert_owen.databinding.FragmentHomeBinding
 import com.owen.quakealert_owen.model.DataX
+import com.owen.quakealert_owen.model.Users
 import com.owen.quakealert_owen.view.MainActivity.Companion.loginID
 import com.owen.quakealert_owen.viewmodel.GempaViewModel
 import com.owen.quakealert_owen.viewmodel.UserViewModel

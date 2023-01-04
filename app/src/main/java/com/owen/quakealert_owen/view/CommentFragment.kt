@@ -15,6 +15,7 @@ import com.owen.quakealert_owen.databinding.FragmentCommentBinding
 import com.owen.quakealert_owen.model.Comment
 import com.owen.quakealert_owen.model.DataX
 import com.owen.quakealert_owen.model.Gempa
+import com.owen.quakealert_owen.model.Users
 import com.owen.quakealert_owen.view.MainActivity.Companion.loginID
 import com.owen.quakealert_owen.viewmodel.GempaViewModel
 import com.owen.quakealert_owen.viewmodel.UserViewModel
@@ -52,7 +53,7 @@ class CommentFragment : Fragment() {
             viewModel.getComment()
             viewModel.comment.observe(viewLifecycleOwner, Observer { response ->
                 binding.commentRv.layoutManager = LinearLayoutManager(context)
-                Commentadapter = CommentAdapter(response.data as ArrayList<DataX>, status)
+                Commentadapter = CommentAdapter(response.data as ArrayList<DataX>,status)
                 binding.commentRv.adapter = Commentadapter
             })
         })

@@ -47,7 +47,7 @@ class UserViewModel @Inject constructor(private val repository: UserRepository):
             if (response.isSuccessful){
                 _user.postValue(response.body())
             }else{
-                Log.e("Get Data","Failed!")
+                Log.e("Get User","Failed!")
             }
         }
     }
@@ -64,6 +64,7 @@ class UserViewModel @Inject constructor(private val repository: UserRepository):
     fun getComment() = viewModelScope.launch {
         repository.getComment().let {response ->
             if (response.isSuccessful){
+                Log.e("Error comment data",response.body().toString())
                 _comment.postValue(response.body())
             }else{
                 Log.e("Get Comment","Failed!")

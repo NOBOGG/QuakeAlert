@@ -15,6 +15,7 @@ import com.owen.quakealert_owen.databinding.CommentsCardviewBinding
 import com.owen.quakealert_owen.model.Comment
 import com.owen.quakealert_owen.model.DataX
 import com.owen.quakealert_owen.model.SubmitComment
+import com.owen.quakealert_owen.model.Users
 import com.owen.quakealert_owen.view.MainActivity
 import com.owen.quakealert_owen.view.MainActivity.Companion.loginID
 import com.owen.quakealert_owen.viewmodel.UserViewModel
@@ -55,7 +56,7 @@ class CommentAdapter(private val dataSet: ArrayList<DataX>, val status:String) :
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
         viewHolder.binding.namecardTv.text = dataSet[position].comment
-        viewHolder.binding.commentcardTv.text = dataSet[position].user_id.toString()
+        viewHolder.binding.commentcardTv.text = dataSet[position].name
         viewHolder.binding.trashBtn.visibility = View.GONE
         if (status == "admin") {
             viewHolder.binding.trashBtn.visibility = View.VISIBLE
