@@ -15,6 +15,7 @@ import com.owen.quakealert_owen.databinding.FragmentCommentBinding
 import com.owen.quakealert_owen.model.Comment
 import com.owen.quakealert_owen.model.DataX
 import com.owen.quakealert_owen.model.Gempa
+import com.owen.quakealert_owen.view.MainActivity.Companion.loginID
 import com.owen.quakealert_owen.viewmodel.GempaViewModel
 import com.owen.quakealert_owen.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -45,14 +46,26 @@ class CommentFragment : Fragment() {
         binding = FragmentCommentBinding.inflate(layoutInflater)
 
         viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
-        viewModel.getComment()
-
-        viewModel.comment.observe(viewLifecycleOwner, Observer { response ->
-            binding.commentRv.layoutManager = LinearLayoutManager(context)
-            Commentadapter = CommentAdapter(response.data as ArrayList<DataX>)
-            binding.commentRv.adapter = Commentadapter
-
+        viewModel.getUserbyId(loginID)
+        viewModel.user.observe(viewLifecycleOwner, Observer { response ->
+           val status = response.status
+            viewModel.getComment()
+            viewModel.comment.observe(viewLifecycleOwner, Observer { response ->
+                binding.commentRv.layoutManager = LinearLayoutManager(context)
+                Commentadapter = CommentAdapter(response.data as ArrayList<DataX>, status)
+                binding.commentRv.adapter = Commentadapter
+            })
         })
+
+        viewModel.getComment()
+        viewModel.comment.observe(viewLifecycleOwner, Observer { response ->
+            val status = "guest"
+            binding.commentRv.layoutManager = LinearLayoutManager(context)
+            Commentadapter = CommentAdapter(response.data as ArrayList<DataX>, status)
+            binding.commentRv.adapter = Commentadapter
+        })
+
+
 
 
 

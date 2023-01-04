@@ -27,7 +27,7 @@ import retrofit2.Response
 import javax.inject.Inject
 
 
-class CommentAdapter(private val dataSet: ArrayList<DataX>) :
+class CommentAdapter(private val dataSet: ArrayList<DataX>, val status:String) :
     RecyclerView.Adapter<CommentAdapter.ViewHolder>() {
 
     private lateinit var viewModel: UserViewModel
@@ -56,16 +56,14 @@ class CommentAdapter(private val dataSet: ArrayList<DataX>) :
         // contents of the view with that element
         viewHolder.binding.namecardTv.text = dataSet[position].comment
         viewHolder.binding.commentcardTv.text = dataSet[position].user_id.toString()
-//        viewModel = ViewModelProvider(ViewModelStore(), ViewModelProvider.NewInstanceFactory()).get(
-//            UserViewModel::class.java
-//        )
-//        viewModel.getUserbyId(loginID)
-//
-//        viewModel.user.observeForever {
-//            if (it.status != "admin") {
-//                viewHolder.binding.trashBtn.visibility = View.INVISIBLE
-//            } else {
-//                viewHolder.binding.trashBtn.visibility = View.VISIBLE
+        viewHolder.binding.trashBtn.visibility = View.GONE
+        if (status == "admin") {
+            viewHolder.binding.trashBtn.visibility = View.VISIBLE
+        } else if (status == "member") {
+            viewHolder.binding.trashBtn.visibility = View.INVISIBLE
+        }else if (status == "guest"){
+            viewHolder.binding.trashBtn.visibility = View.INVISIBLE
+        }
 
                 viewHolder.binding.trashBtn.setOnClickListener {
                     val alertDialog = AlertDialog.Builder(it.context)

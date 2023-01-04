@@ -15,6 +15,7 @@ import com.owen.quakealert_owen.R
 import com.owen.quakealert_owen.adapter.CommentAdapter
 import com.owen.quakealert_owen.databinding.FragmentHomeBinding
 import com.owen.quakealert_owen.model.DataX
+import com.owen.quakealert_owen.view.MainActivity.Companion.loginID
 import com.owen.quakealert_owen.viewmodel.GempaViewModel
 import com.owen.quakealert_owen.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -80,14 +81,26 @@ class HomeFragment : Fragment() {
 //        }
 
         viewModelCom = ViewModelProvider(this).get(UserViewModel::class.java)
-        viewModelCom.getComment()
+        viewModelCom.getUserbyId(loginID)
+        viewModelCom.user.observe(viewLifecycleOwner, Observer {
+            response->
+            val status = response.status
+            viewModelCom.getComment()
+            viewModelCom.comment.observe(viewLifecycleOwner, Observer { response ->
+                binding.homecommentRv.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                Comadapter = CommentAdapter(response.data as ArrayList<DataX>,status)
+                binding.homecommentRv.adapter = Comadapter
 
-        viewModelCom.comment.observe(viewLifecycleOwner, Observer { response ->
-            binding.homecommentRv.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            Comadapter = CommentAdapter(response.data as ArrayList<DataX>)
-            binding.homecommentRv.adapter = Comadapter
-
+            })
         })
+        viewModelCom.getComment()
+        viewModelCom.comment.observe(viewLifecycleOwner, Observer { response ->
+            val status = "guest"
+            binding.homecommentRv.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            Comadapter = CommentAdapter(response.data as ArrayList<DataX>,status)
+            binding.homecommentRv.adapter = Comadapter
+        })
+
 
         return binding.root
     }

@@ -9,11 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.owen.quakealert_owen.R
 import com.owen.quakealert_owen.databinding.FragmentAddCommentBinding
 import com.owen.quakealert_owen.model.SubmitComment
 import com.owen.quakealert_owen.retrofit.EndPointApi
+import com.owen.quakealert_owen.view.MainActivity.Companion.loginID
 import com.owen.quakealert_owen.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Call
@@ -46,26 +48,44 @@ class AddCommentFragment : Fragment() {
         //create comment
         binding.addcommentBtn.setOnClickListener {
             val comment = binding.commentEdittext.text.toString().trim()
-            val id = binding.commentEdittext.text.toString()
+//            val id = binding.commentEdittext.text.toString()
             viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
-            viewModel.createComment(comment, "1").enqueue(object : retrofit2.Callback<SubmitComment> {
-                override fun onResponse(
-                    call: Call<SubmitComment>,
-                    response: retrofit2.Response<SubmitComment>
-                ) {
-                    if (response.isSuccessful) {
-                        val myIntent = Intent(context, MainActivity::class.java)
-                        startActivity(myIntent)
-                        Toast.makeText(context, "Comment telah terbuat", Toast.LENGTH_SHORT).show()
-                    }else{
-                        Toast.makeText(context, "Comment tidak berhasil terbuat", Toast.LENGTH_SHORT).show()
-                    }
-                }
+            if (loginID!=0) {
+                viewModel.getUserbyId(loginID)
+                viewModel.user.observe(viewLifecycleOwner, Observer { response ->
+                    val id = response.id.toString()
+                    viewModel.createComment(comment, id)
+                        .enqueue(object : retrofit2.Callback<SubmitComment> {
+                            override fun onResponse(
+                                call: Call<SubmitComment>,
+                                response: retrofit2.Response<SubmitComment>
+                            ) {
+                                if (response.isSuccessful) {
+                                    val myIntent = Intent(context, MainActivity::class.java)
+                                    startActivity(myIntent)
+                                    Toast.makeText(
+                                        context,
+                                        "Comment telah terbuat",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                } else {
+                                    Toast.makeText(
+                                        context,
+                                        "Comment tidak berhasil terbuat",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            }
 
-                override fun onFailure(call: Call<SubmitComment>, t: Throwable) {
-                    Log.d("TAG", "onFailure: ${t.message}")
-                }
-            })
+                            override fun onFailure(call: Call<SubmitComment>, t: Throwable) {
+                                Log.d("TAG", "onFailure: ${t.message}")
+                            }
+                        })
+                })
+            } else {
+                Toast.makeText(context, "Login terlebih dahulu", Toast.LENGTH_SHORT).show()
+            }
+
         }
 
             return binding.root
