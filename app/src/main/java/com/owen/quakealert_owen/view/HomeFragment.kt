@@ -1,11 +1,17 @@
 package com.owen.quakealert_owen.view
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,6 +27,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.time.LocalDate
+import java.time.LocalDateTime
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -45,13 +53,17 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        createNotificationChannel()
         binding = FragmentHomeBinding.inflate(layoutInflater)
 
         viewModel = ViewModelProvider(this).get(GempaViewModel::class.java)
         viewModel.getGempaTerkini()
+        var dateTime = ""
+        var dateTimeNow = LocalDateTime.now().toString()
 
         viewModel.gempaTerkini.observe(viewLifecycleOwner,Observer {
                 response->
+            dateTime = response.gempa.DateTime
             binding.magnitudeTv.apply {
                 text = response.gempa.Magnitude
             }
@@ -73,7 +85,12 @@ class HomeFragment : Fragment() {
             binding.datetimeTv.apply {
                 text = response.gempa.Tanggal
             }
+            if(dateTime.equals(dateTimeNow)){
+                sendNotification(response.gempa.Wilayah)
+            }
         })
+
+
 
         binding.buttonshkCv.setOnClickListener {
             replaceFragment(ShakeMapFragment())
@@ -109,6 +126,33 @@ class HomeFragment : Fragment() {
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.frameLayout,fragment)
         fragmentTransaction.commit()
+    }
+
+    private fun createNotificationChannel(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            val name = "Earthquake Alert"
+            val descriptionText = "Notification for Earthquake Alert"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel("Earthquake Alert",name,importance).apply {
+                description = descriptionText
+            }
+            val notificationManager: NotificationManager = requireActivity().getSystemService(
+                Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
+    }
+
+    private fun sendNotification(Text:String){
+        val builder = NotificationCompat.Builder(requireContext(),"Earthquake Alert")
+            .setSmallIcon(R.drawable.home_logo)
+            .setContentTitle("Earthquake Alert")
+            .setContentText(Text)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+
+        with(NotificationManagerCompat.from(requireContext())){
+            notify(1,builder.build())
+        }
+
     }
 
 
