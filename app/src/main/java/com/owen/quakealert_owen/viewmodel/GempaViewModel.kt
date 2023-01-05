@@ -22,7 +22,7 @@ class GempaViewModel @Inject constructor(private val repository: GempaRepository
         get() = _gempaTerkini
 
     fun getGempaTerkini() = viewModelScope.launch {
-        repository.getGempaDirasakan().let { response ->
+        repository.getGempa().let { response ->
             Log.e("EROORE", response.body().toString())
             if (response.isSuccessful) {
                 var x : Data = response.body() as Data
@@ -33,23 +33,46 @@ class GempaViewModel @Inject constructor(private val repository: GempaRepository
         }
     }
 
-    val _gempaDirasakan : MutableLiveData<Infogempa> by lazy{
-        MutableLiveData<Infogempa>()
+    val _gempaDirasakan : MutableLiveData<InfogempaX> by lazy{
+        MutableLiveData<InfogempaX>()
     }
 
-    val gempaDirasakan: LiveData<Infogempa>
+    val gempaDirasakan: LiveData<InfogempaX>
         get() = _gempaDirasakan
 
-    fun getGempaHistory() = viewModelScope.launch {
+    fun getGempaDirasakan() = viewModelScope.launch {
         repository.getGempaDirasakan().let { response ->
             Log.e("EROOREhis", response.body().toString())
             if (response.isSuccessful) {
-                var x : Data = response.body() as Data
+                var x : GempaDirasakan = response.body() as GempaDirasakan
                 _gempaDirasakan.postValue(x.Infogempa)
             }else{
                 Log.e("Get Gempa Data","Failed!")
             }
         }
     }
+
+    //get gempa his
+    val _gempaHis : MutableLiveData<GempaHistory> by lazy{
+        MutableLiveData<GempaHistory>()
+    }
+
+    val gempaHis : LiveData<GempaHistory>
+        get() = _gempaHis
+
+    fun getGempaHis() = viewModelScope.launch {
+        repository.getGempaHistory().let { response ->
+            Log.e("Data gempahis", response.body().toString())
+            if (response.isSuccessful) {
+               _gempaHis.postValue(response.body())
+            }else{
+                Log.e("Get Gempa Data History","Failed!")
+            }
+        }
+    }
+
+    //create gempa
+    fun createGempa(wilayah:String, tanggal:String , magnitudo: String) =
+        repository.insertGempa(wilayah, tanggal, magnitudo)
 
 }

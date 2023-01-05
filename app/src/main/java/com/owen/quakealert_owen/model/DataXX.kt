@@ -1,6 +1,6 @@
 package com.owen.quakealert_owen.model
 
-data class Datagempa(
+data class DataXX(
     val id: Int,
     val magnitudo: String,
     val tanggal: String,

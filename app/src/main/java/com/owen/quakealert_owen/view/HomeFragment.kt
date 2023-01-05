@@ -1,7 +1,5 @@
 package com.owen.quakealert_owen.view
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -15,11 +13,14 @@ import com.owen.quakealert_owen.R
 import com.owen.quakealert_owen.adapter.CommentAdapter
 import com.owen.quakealert_owen.databinding.FragmentHomeBinding
 import com.owen.quakealert_owen.model.DataX
-import com.owen.quakealert_owen.model.Users
+import com.owen.quakealert_owen.model.SubmitGempa
 import com.owen.quakealert_owen.view.MainActivity.Companion.loginID
 import com.owen.quakealert_owen.viewmodel.GempaViewModel
 import com.owen.quakealert_owen.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -52,34 +53,31 @@ class HomeFragment : Fragment() {
         viewModel.gempaTerkini.observe(viewLifecycleOwner,Observer {
                 response->
             binding.magnitudeTv.apply {
-                text = response.gempa.get(0).Magnitude
-//                Log.e("tes",response.Magnitude)
-//                println("tes")
-                println(response.gempa.get(0).Magnitude)
+                text = response.gempa.Magnitude
             }
             binding.wilayahTv.apply {
-                text = response.gempa.get(0).Wilayah
+                text = response.gempa.Wilayah
             }
             binding.lintangTv.apply {
-                text = response.gempa.get(0).Lintang
+                text = response.gempa.Lintang
             }
             binding.bujurTv.apply {
-                text = response.gempa.get(0).Bujur
+                text = response.gempa.Bujur
             }
             binding.kedalamanTv.apply {
-                text = response.gempa.get(0).Kedalaman
+                text = response.gempa.Kedalaman
             }
             binding.potensiTv.apply {
-                text = response.gempa.get(0).Coordinates
+                text = response.gempa.Potensi
             }
             binding.datetimeTv.apply {
-                text = response.gempa.get(0).Tanggal
+                text = response.gempa.Tanggal
             }
         })
 
-//        binding.buttonshkCv.setOnClickListener {
-//            replaceFragment(ShakeMapFragment())
-//        }
+        binding.buttonshkCv.setOnClickListener {
+            replaceFragment(ShakeMapFragment())
+        }
 
         viewModelCom = ViewModelProvider(this).get(UserViewModel::class.java)
         viewModelCom.getUserbyId(loginID)

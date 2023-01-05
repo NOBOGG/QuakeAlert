@@ -29,27 +29,6 @@ class RegisterActivity : AppCompatActivity() {
         listener()
 
 
-
-
-        //create user
-
-
-//        viewModel.createUser(name, username, password, email, "member", "").let {
-//            if (it.isExecuted){
-//                val myIntent = Intent(this, LoginActivity::class.java)
-//                startActivity(myIntent)
-//                finish()
-//            }
-//        }
-//        viewModel.createUser(name,username,password,email,"member","").let {response->
-//            if(response.isExecuted){
-//                val myIntent = Intent(this, LoginActivity::class.java)
-//                startActivity(myIntent)
-//                finish()
-//            }
-//        }
-
-
     }
 
     private fun listener() {

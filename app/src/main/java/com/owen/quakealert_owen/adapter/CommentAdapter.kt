@@ -71,8 +71,8 @@ class CommentAdapter(private val dataSet: ArrayList<DataX>, val status:String) :
                     alertDialog.apply {
                         setTitle("Konfirmasi")
                         setMessage("Apakah anda yakin untuk menghapus komen ini?")
-                        setNegativeButton("No", { dialogInterface, i -> dialogInterface.dismiss() })
-                        setPositiveButton("Yes", { dialogInterface, i -> dialogInterface.dismiss()
+                        setNegativeButton("Tidak", { dialogInterface, i -> dialogInterface.dismiss() })
+                        setPositiveButton("Iya", { dialogInterface, i -> dialogInterface.dismiss()
                             val myIntent =
                                 Intent(viewHolder.itemView.context, MainActivity::class.java).apply {
                                     putExtra("commentdel_id", dataSet[position].id)

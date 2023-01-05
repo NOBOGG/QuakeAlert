@@ -10,7 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.owen.quakealert_owen.adapter.HistoryQuakeAdapter
 import com.owen.quakealert_owen.databinding.FragmentHistoryBinding
-import com.owen.quakealert_owen.model.Gempa
+import com.owen.quakealert_owen.model.GempaX
+import com.owen.quakealert_owen.model.InfogempaX
 import com.owen.quakealert_owen.viewmodel.GempaViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -38,11 +39,11 @@ class HistoryFragment : Fragment() {
       binding = FragmentHistoryBinding.inflate(inflater, container, false)
 
         viewModel = ViewModelProvider(this).get(GempaViewModel::class.java)
-        viewModel.getGempaHistory()
+        viewModel.getGempaDirasakan()
 
         viewModel.gempaDirasakan.observe(viewLifecycleOwner, Observer { response ->
             binding.historyquakeRv.layoutManager = LinearLayoutManager(context)
-            historyQuakeAdapter = HistoryQuakeAdapter(response.gempa as ArrayList<Gempa>)
+            historyQuakeAdapter = HistoryQuakeAdapter(response.gempa as ArrayList<GempaX>)
             binding.historyquakeRv.adapter = historyQuakeAdapter
 
         })

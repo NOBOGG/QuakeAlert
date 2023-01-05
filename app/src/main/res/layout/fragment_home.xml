@@ -320,7 +320,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:fontFamily="@font/nunito"
-                            android:text="Koordinat"
+                            android:text="Potensi"
                             android:textColor="#EB5F52"
                             app:layout_constraintStart_toStartOf="@+id/wilayah_tv"
                             app:layout_constraintTop_toBottomOf="@+id/wilayah_tv" />
@@ -331,16 +331,51 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:layout_marginEnd="8dp"
-                            android:layout_marginBottom="16dp"
                             android:fontFamily="@font/nunito"
-                            android:text="Koordinat"
+                            android:text="Potensi"
                             android:textColor="#000000"
                             android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="@+id/textView5"
                             app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/buttonshk_cv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="16dp"
+                            app:cardBackgroundColor="#F3EDEB"
+                            app:cardCornerRadius="50dp"
+                            app:cardElevation="10dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/potensi_tv"
+                            app:layout_constraintStart_toStartOf="@+id/potensi_tv"
+                            app:layout_constraintTop_toBottomOf="@+id/potensi_tv">
 
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/textView6"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="16dp"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginEnd="16dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:fontFamily="@font/nunito"
+                                    android:text="Peta Guncangan"
+                                    android:textColor="#EB5F52"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </androidx.cardview.widget.CardView>
 
 
                     </androidx.constraintlayout.widget.ConstraintLayout>

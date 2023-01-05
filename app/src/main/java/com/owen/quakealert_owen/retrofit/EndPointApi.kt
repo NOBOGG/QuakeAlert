@@ -25,13 +25,21 @@ interface EndPointApi {
     @GET("gempaterkini")
      suspend fun getGempaData():Response<Data>
 
-//    @GET("DataMKG/TEWS/gempadirasakan.json")
-//    suspend fun getGempaDirasakan():Response<Data>
 
+     @GET("gempahis")
+        suspend fun getGempaHistory():Response<GempaHistory>
 
+    //insert gempa
+    @FormUrlEncoded
+    @POST("gempahis")
+    fun insertGempa(
+        @Field("wilayah") wilayah: String,
+        @Field("tanggal") tanggal: String,
+        @Field("magnitudo") magnitudo: String,
+    ):Call<SubmitGempa>
 
     @GET("gempa")
-     suspend fun getGempaDirasakan():Response<Data>
+     suspend fun getGempaDirasakan():Response<GempaDirasakan>
 
      //get comment
     @GET("comment")

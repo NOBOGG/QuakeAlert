@@ -6,11 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.owen.quakealert_owen.R
 import com.owen.quakealert_owen.databinding.HistoryquakeCardviewBinding
-import com.owen.quakealert_owen.model.Gempa
-import com.owen.quakealert_owen.model.Infogempa
+import com.owen.quakealert_owen.model.DataXX
+import com.owen.quakealert_owen.model.GempaX
 
 
-class HistoryQuakeAdapter(private val dataSet: ArrayList<Gempa>) :
+class HistoryQuakeAdapter(private val dataSet: ArrayList<GempaX>) :
         RecyclerView.Adapter<HistoryQuakeAdapter.ViewHolder>() {
 
     /**

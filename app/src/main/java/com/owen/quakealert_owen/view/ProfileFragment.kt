@@ -35,7 +35,7 @@ class ProfileFragment : Fragment() {
         if(loginID !=0){
             viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
             viewModel.getUserbyId(loginID)
-            Toast.makeText(context, "Login ID : $loginID", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context, "Login ID : $loginID", Toast.LENGTH_SHORT).show()
 
             binding.emailTv.visibility = View.VISIBLE
             binding.updateprofileBtn.visibility = View.VISIBLE

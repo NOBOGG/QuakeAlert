@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
             loginID = sharedPreference.getInt("id", 0)
         }
         supportActionBar?.hide()
-        Toast.makeText(this, "Login ID : $loginID", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "Login ID : $loginID", Toast.LENGTH_SHORT).show()
         fragmentListener()
 
         if (commentID!=0){
