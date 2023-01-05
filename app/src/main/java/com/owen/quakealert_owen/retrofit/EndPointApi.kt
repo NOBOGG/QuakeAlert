@@ -22,7 +22,7 @@ interface EndPointApi {
 //    @GET("autogempa.json")
 //    suspend fun getGempaTerbaru(
 //    ):Response <Gempa>
-    @GET("gempaterkini")
+    @GET("https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json")
      suspend fun getGempaData():Response<Data>
 
 
@@ -38,7 +38,7 @@ interface EndPointApi {
         @Field("magnitudo") magnitudo: String,
     ):Call<SubmitGempa>
 
-    @GET("gempa")
+    @GET("https://data.bmkg.go.id/DataMKG/TEWS/gempadirasakan.json")
      suspend fun getGempaDirasakan():Response<GempaDirasakan>
 
      //get comment
