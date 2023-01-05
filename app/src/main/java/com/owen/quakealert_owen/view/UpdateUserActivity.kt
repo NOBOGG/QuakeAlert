@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Patterns
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.Observer
@@ -48,29 +49,82 @@ class UpdateUserActivity : AppCompatActivity() {
             val username = binding.usernameEdittext.text.toString().trim()
             val password = binding.passwordEdittext.text.toString().trim()
             val email = binding.emailEdittext.text.toString().trim()
+            //checker
+            if (name.isEmpty()){
+                binding.nameLayout.error = "Nama tidak boleh kosong"
+                binding.nameLayout.requestFocus()
+                return@setOnClickListener
+            }else{
+                binding.nameLayout.error = ""
+            }
+            if (username.isEmpty()){
+                binding.usernameLayout.error = "Username tidak boleh kosong"
+                binding.usernameLayout.requestFocus()
+                return@setOnClickListener
+            }else{
+                binding.usernameLayout.error = ""
+            }
+            if (email.isEmpty()){
+                binding.emailLayout.error = "Email tidak boleh kosong"
+                binding.emailLayout.requestFocus()
+                return@setOnClickListener
+            }else{
+                if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                    binding.emailLayout.error = "Email tidak valid"
+                    binding.emailLayout.requestFocus()
+                    return@setOnClickListener
+                }else {
+                    binding.emailLayout.error = ""
+                }
+            }
+            if (password.isEmpty()){
+                binding.passwordLayout.error = "Password tidak boleh kosong"
+                binding.passwordLayout.requestFocus()
+                return@setOnClickListener
+            }else{
+                binding.passwordLayout.error = ""
+            }
+
+
             //get image url
             val image = binding.profileimageBtn.imageAlpha.toString().trim()
 
-            viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
-            viewModel.updateUser(profileID, name, username, password, email, "member", image).enqueue(object : retrofit2.Callback<SubmitRegister>{
-                override fun onResponse(
-                    call: retrofit2.Call<SubmitRegister>,
-                    response: retrofit2.Response<SubmitRegister>
-                ) {
-                    if (response.isSuccessful){
-                        Toast.makeText(this@UpdateUserActivity, "Update Berhasil", Toast.LENGTH_SHORT).show()
-                        val myIntent = Intent(this@UpdateUserActivity, MainActivity::class.java)
-                        startActivity(myIntent)
-                        finish()
-                    }else{
-                        Toast.makeText(this@UpdateUserActivity, "Update Berhasil", Toast.LENGTH_SHORT).show()
-                    }
-                }
+            if (name.isNotEmpty() && username.isNotEmpty() && password.isNotEmpty() && email.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+                viewModel.updateUser(profileID, name, username, password, email, "member", image)
+                    .enqueue(object : retrofit2.Callback<SubmitRegister> {
+                        override fun onResponse(
+                            call: retrofit2.Call<SubmitRegister>,
+                            response: retrofit2.Response<SubmitRegister>
+                        ) {
+                            if (response.isSuccessful) {
+                                Toast.makeText(
+                                    this@UpdateUserActivity,
+                                    "Update Berhasil",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                val myIntent =
+                                    Intent(this@UpdateUserActivity, MainActivity::class.java)
+                                startActivity(myIntent)
+                                finish()
+                            } else {
+                                Toast.makeText(
+                                    this@UpdateUserActivity,
+                                    "Update Berhasil",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
 
-                override fun onFailure(call: retrofit2.Call<SubmitRegister>, t: Throwable) {
-                    Toast.makeText(this@UpdateUserActivity, "Update Berhasil", Toast.LENGTH_SHORT).show()
-                }
-            })
+                        override fun onFailure(call: retrofit2.Call<SubmitRegister>, t: Throwable) {
+                            Toast.makeText(
+                                this@UpdateUserActivity,
+                                "Update Berhasil",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    })
+            }
         }
 
     }
