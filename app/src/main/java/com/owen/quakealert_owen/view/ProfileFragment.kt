@@ -64,7 +64,7 @@ class ProfileFragment : Fragment() {
                         visibility = View.VISIBLE
                     }
                 }
-                binding.imageView2.setImageURI(Uri.parse(response.image))
+//                binding.imageView2.setImageURI(Uri.parse(response.image))
             })
             binding.loginfirstBtn.text = "Logout"
             binding.loginfirstBtn.setOnClickListener {
